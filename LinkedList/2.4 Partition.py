@@ -9,8 +9,29 @@ Output:
 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
 """
 
+import copy
+
 def partition(node, x):
     if not node:
         return None
+
+    head = node
+    tail = node
+    curr = node.next
+    while curr:
+        if curr.val < x:
+            curr.next = head
+            head = curr
+        else:
+            tail.next = curr
+            tail = curr
+
+        curr = curr.next
+    tail.next = None
+
+    return head
+
+
+
 
 
